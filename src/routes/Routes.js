@@ -7,6 +7,7 @@ import Dashboard from '../dashboard/dashboard';
 import CadastroDeProduto from "../pages/Cadastro_prod";
 import HistoricoCompras from "../pages/Hist_cli";
 import Logout from "../pages/Logout";
+import Venda from "../pages/Efet_vendas";
 
 
 
@@ -53,6 +54,11 @@ const router = createBrowserRouter([
         path: "/",
         element: <RotaPrivada elemento={<Home/>} />,
     },
+    {
+      path: "/Venda",
+      element: <RotaPrivada elemento={<Venda/>} />,
+  },
+    
   ]);
 
   const Rota = () => {

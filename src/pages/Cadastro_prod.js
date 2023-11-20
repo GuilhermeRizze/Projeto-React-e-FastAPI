@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import {
   Container,
   TextField,
@@ -32,8 +33,10 @@ function CadastroDeProduto() {
   const [produto, setProduto] = useState({
     nome: '',
     preco: '',
+    quantidade: '',  
+    tipo: '',     
     descricao: '',
-    imagem: null,
+    imagem: '',
   });
 
   const handleChange = (e) => {
@@ -44,17 +47,16 @@ function CadastroDeProduto() {
     });
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setProduto({
-      ...produto,
-      imagem: URL.createObjectURL(file),
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Dados do produto:', produto);
+    
+    try {
+      // Enviar dados para a API FastAPI
+      const response = await axios.post('http://localhost:8000/create', produto); //
+      console.log('Resposta da API:', response.data);
+    } catch (error) {
+      console.error('Erro ao enviar dados para a API:', error);
+    }
   };
 
   return (
@@ -104,6 +106,7 @@ function CadastroDeProduto() {
                 name="tipo"
                 value={produto.tipo}
                 onChange={handleChange}
+                required
               />
             </Grid>
             <Grid item xs={12}>
@@ -113,29 +116,24 @@ function CadastroDeProduto() {
                 name="descricao"
                 multiline
                 rows={4}
-                value={produto.tipo}
+                value={produto.descricao}
                 onChange={handleChange}
+                required
               />
             </Grid>
             <Grid item xs={12}>
-              <input
-                type="file"
-                accept="image/*"
-                id="product-image"
-                style={styles.imageInput}
-                onChange={handleImageChange}
+              <TextField
+                fullWidth
+                label="Imagem"
+                name="imagem"
+                multiline
+                rows={4}
+                value={produto.imagem}
+                onChange={handleChange}
+                required
               />
-              <label htmlFor="product-image" style={styles.imageLabel}>
-                Selecione a imagem
-              </label>
-              {produto.imagem && (
-                <img
-                  src={produto.imagem}
-                  alt="Imagem do Produto"
-                  style={styles.productImage}
-                />
-              )}
             </Grid>
+            
             <Grid item xs={12}>
               <Button type="submit" variant="contained" color="primary">
                 Cadastrar Produto

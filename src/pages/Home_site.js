@@ -3,7 +3,6 @@ import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import ShopIcon from '@mui/icons-material/ShoppingCart';
 import ShopAddIcon from '@mui/icons-material/AddShoppingCart';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -17,14 +16,44 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
 
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+//const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function Album() {
+    const [cursos, setCursos] = React.useState([]);
+  
+    React.useEffect(() => {
+      // Fazer uma solicitação GET ao endpoint FastAPI para obter a lista de produtos
+      const obterCursos = async () => {
+        try {
+          const response = await axios.get('http://localhost:8000/list');
+          setCursos(response.data);
+        } catch (error) {
+          console.error('Erro ao obter cursos:', error);
+        }
+      };
+  
+      obterCursos();
+    }, []);
+
+  const adicionarAoCarrinho = async () => {
+    try {
+      const response = await axios.post('http://localhost:8000/add_car', {
+        cursos: 'nome',
+        cursos: 'id',
+        cursos: 'preco', // Substitua com a lógica real VER
+      });
+
+      console.log('Resposta da API:', response.data);
+    } catch (error) {
+      console.error('Erro ao adicionar ao carrinho:', error);
+    }
+  };
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
@@ -73,11 +102,11 @@ export default function Album() {
             </Stack>
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
+        <Container sx={{ py: 3 }} maxWidth="md">
           {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+          <Grid container spacing={2}>
+            {cursos.map((cursos) => (
+              <Grid item key={cursos.id} xs={12} sm={6} md={4}>
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
@@ -87,18 +116,23 @@ export default function Album() {
                       // 16:9
                       pt: '56.25%',
                     }}
-                    image="https://source.unsplash.com/random?wallpapers"
+                    image="{cursos.imagem}"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      NOME
+                  <Typography gutterBottom variant="h5" component="h2">
+                      {cursos.nome}
                     </Typography>
                     <Typography>
-                      DESCRIÇÃO
+                      {cursos.descricao}
+                    </Typography>
+                    <Typography color="red">
+                      {cursos.preco}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">Adicionar ao Carrinho</Button>
+                    <Link to='/Carrinho'>
+                      <ShopAddIcon sx={{ mr: 2 }} position="end" onClick={adicionarAoCarrinho} />
+                    </Link>
                   </CardActions>
                 </Card>
               </Grid>
