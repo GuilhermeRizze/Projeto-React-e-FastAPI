@@ -30,7 +30,7 @@ export default function Album() {
       // Fazer uma solicitação GET ao endpoint FastAPI para obter a lista de produtos
       const obterCursos = async () => {
         try {
-          const response = await axios.get('http://localhost:8000/list');
+          const response = await axios.get('http://localhost:8000/curso/list');
           setCursos(response.data);
         } catch (error) {
           console.error('Erro ao obter cursos:', error);
@@ -40,20 +40,7 @@ export default function Album() {
       obterCursos();
     }, []);
 
-  const adicionarAoCarrinho = async () => {
-    try {
-      const response = await axios.post('http://localhost:8000/add_car', {
-        cursos: 'nome',
-        cursos: 'id',
-        cursos: 'preco', // Substitua com a lógica real VER
-      });
-
-      console.log('Resposta da API:', response.data);
-    } catch (error) {
-      console.error('Erro ao adicionar ao carrinho:', error);
-    }
-  };
-
+  
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
@@ -116,7 +103,7 @@ export default function Album() {
                       // 16:9
                       pt: '56.25%',
                     }}
-                    image="{cursos.imagem}"
+                    image={cursos.imagem}
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="h2">
@@ -126,14 +113,10 @@ export default function Album() {
                       {cursos.descricao}
                     </Typography>
                     <Typography color="red">
-                      {cursos.preco}
+                      R$ {cursos.preco}
                     </Typography>
                   </CardContent>
-                  <CardActions>
-                    <Link to='/Carrinho'>
-                      <ShopAddIcon sx={{ mr: 2 }} position="end" onClick={adicionarAoCarrinho} />
-                    </Link>
-                  </CardActions>
+                  
                 </Card>
               </Grid>
             ))}

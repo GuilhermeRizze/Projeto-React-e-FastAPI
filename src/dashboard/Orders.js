@@ -14,7 +14,7 @@ export default function Orders() {
     const obterVendas = async () => {
       try {
         // Substitua a URL abaixo pela URL real do seu endpoint FastAPI para obter dados de vendas
-        const response = await axios.get('http://localhost:8000/vendas');
+        const response = await axios.get('http://localhost:8000/curso/compra');
         setVendas(response.data);
       } catch (error) {
         console.error('Erro ao obter vendas:', error);
@@ -30,21 +30,15 @@ export default function Orders() {
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Data</TableCell>
-            <TableCell>Nome</TableCell>
-            <TableCell>Produto</TableCell>
-            <TableCell>Retirar Coluna</TableCell>
+            <TableCell>ID do Cliente</TableCell>
             <TableCell align="right">Valor</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {vendas.map((venda) => (
-            <TableRow key={venda.id}>
-              <TableCell>{venda.data}</TableCell>
-              <TableCell>{venda.nome}</TableCell>
-              <TableCell>{venda.produto}</TableCell>
-              <TableCell>{/* Lógica para a coluna que você deseja retirar */}</TableCell>
-              <TableCell align="right">{`$${venda.valor}`}</TableCell>
+            <TableRow>
+              <TableCell>{venda.id_cli}</TableCell>
+              <TableCell align="right">{`$${venda.total}`}</TableCell>
             </TableRow>
           ))}
         </TableBody>

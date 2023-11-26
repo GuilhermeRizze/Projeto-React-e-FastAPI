@@ -8,6 +8,8 @@ import CadastroDeProduto from "../pages/Cadastro_prod";
 import HistoricoCompras from "../pages/Hist_cli";
 import Logout from "../pages/Logout";
 import Venda from "../pages/Efet_vendas";
+import Editar from "../pages/Atualiza_prod";
+import Conf from "../pages/Efet_vendas";
 
 
 
@@ -58,6 +60,14 @@ const router = createBrowserRouter([
       path: "/Venda",
       element: <RotaPrivada elemento={<Venda/>} />,
   },
+  {
+    path: "/Editar/:codigo",
+    element: <RotaPrivada elemento={<Editar/>} />,
+},
+{
+  path: "/Conf",
+  element: <RotaPrivada elemento={<Conf/>} />,
+},
     
   ]);
 

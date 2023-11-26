@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,14 +8,17 @@ import TableRow from '@mui/material/TableRow';
 import Title from './Title';
 import { Button } from '@mui/material';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Estoque() {
   const [produtos, setProdutos] = React.useState([]);
+  const navigate = useNavigate();
+
 
   React.useEffect(() => {
     const obterProdutos = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/list');
+        const response = await axios.get('http://localhost:8000/curso/list');
         setProdutos(response.data);
       } catch (error) {
         console.error('Erro ao obter produtos:', error);
@@ -24,6 +27,25 @@ export default function Estoque() {
 
     obterProdutos();
   }, []);
+  
+  const handleEditar = (codigo) => {
+    
+    navigate(`/Editar/${codigo}`);
+  };
+
+  const handleExcluir = async (codigo) => {
+    // Implemente a lógica para excluir o produto com o código fornecido.
+    try {
+      await axios.delete(`http://localhost:8000/curso/delete/${codigo}`);
+      // Atualize a lista de produtos após a exclusão.
+      const updatedProdutos = produtos.filter((produto) => produto.codigo !== codigo);
+      setProdutos(updatedProdutos);
+      console.log(`Produto de código ${codigo} excluído com sucesso`);
+    } catch (error) {
+      console.error(`Erro ao excluir produto de código ${codigo}:`, error);
+    }
+  };
+
 
   return (
     <React.Fragment>
@@ -43,14 +65,18 @@ export default function Estoque() {
         </TableHead>
         <TableBody>
           {produtos.map((produto) => (
-            <TableRow key={produto.codigo}>
+            <TableRow>
               <TableCell>{produto.codigo}</TableCell>
               <TableCell>{produto.nome}</TableCell>
               <TableCell>{produto.tipo}</TableCell>
               <TableCell>{produto.quantidade}</TableCell>
-              <TableCell>{produto.valor}</TableCell>
-              <TableCell>Editar </TableCell> //Colocar caminho para o link
-              <TableCell align="right">Excluir Lógica</TableCell>
+              <TableCell>{produto.preco}</TableCell>
+              <TableCell>
+                <Button onClick={() => handleEditar(produto.codigo)}>EDITAR</Button>
+              </TableCell>
+              <TableCell align="right">
+                <Button onClick={() => handleExcluir(produto.codigo)}>Excluir</Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

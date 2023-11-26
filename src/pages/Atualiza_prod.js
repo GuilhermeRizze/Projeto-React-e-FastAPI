@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
+import queryString from 'query-string';
 import {
   Container,
   TextField,
@@ -29,16 +31,22 @@ const styles = {
   },
 };
 
-function CadastroDeProduto() {
+function EdicaoDeProduto() {
+  const { search } = useLocation();
+  const queryParams = queryString.parse(search);
+  const codigo = 85;
+
   const [produto, setProduto] = useState({
-    codigo: '',
     nome: '',
     preco: '',
-    quantidade: '',  
-    tipo: '',     
+    quantidade: '',
+    tipo: '',
     descricao: '',
     imagem: '',
+    codigo: codigo,
   });
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,13 +61,21 @@ function CadastroDeProduto() {
     
     try {
       // Enviar dados para a API FastAPI
-      const response = await axios.post('http://localhost:8000/curso/create', produto); //
+      const response = await axios.put(`http://localhost:8000/curso/update/${produto.codigo}`, produto); //
       console.log('Resposta da API:', response.data);
+      setProduto({
+        nome: '',
+        preco: '',
+        quantidade: '',
+        tipo: '',
+        descricao: '',
+        imagem: '',
+        codigo: produto.codigo,
+      });
     } catch (error) {
-      console.error('Erro ao enviar dados para a API:', error);
+      console.error(`Erro ao enviar dados para a API: ${produto.codigo}`, error);
     }
   };
-
   return (
     <Container style={styles.container}>
       <Typography variant="h4" gutterBottom>
@@ -68,22 +84,12 @@ function CadastroDeProduto() {
       <Paper style={styles.paper}>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={3}>
-          <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Codigo do Produto"
-                name="codigo"
-                value={produto.codigo}
-                onChange={handleChange}
-                required
-              />
-            </Grid>
+         
             <Grid item xs={12}>
               <TextField
                 fullWidth
                 label="Nome do Produto"
                 name="nome"
-                value={produto.nome}
                 onChange={handleChange}
                 required
               />
@@ -147,7 +153,7 @@ function CadastroDeProduto() {
             
             <Grid item xs={12}>
               <Button type="submit" variant="contained" color="primary">
-                Cadastrar Produto
+                Atualizar Produto
               </Button>
             </Grid>
           </Grid>
@@ -157,4 +163,4 @@ function CadastroDeProduto() {
   );
 }
 
-export default CadastroDeProduto;
+export default EdicaoDeProduto;
