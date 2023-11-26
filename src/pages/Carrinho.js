@@ -11,6 +11,8 @@ import {
   Paper,
 } from '@mui/material';
 import axios from 'axios';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 const styles = {
   container: {
@@ -77,6 +79,9 @@ function CarrinhoDeCompras() {
   return (
     <Container style={styles.container}>
       <Typography variant="h4" gutterBottom>
+      <Link to='/' > 
+        <ArrowBackIcon sx={{ ml: 'auto', color: 'black' }} />
+      </Link>
         Carrinho de Compras
       </Typography>
       <Grid container spacing={2}>
@@ -93,6 +98,7 @@ function CarrinhoDeCompras() {
                   <Button
                     variant="contained"
                     color="primary"
+                    sx={{ backgroundColor: '#0D7048', color: 'white' }}
                     onClick={() => adicionarAoCarrinho(produto)}
                   >
                     Adicionar
@@ -125,10 +131,13 @@ function CarrinhoDeCompras() {
         type="button"
         variant="contained"
         color="primary"
+        sx={{ backgroundColor: '#0D7048', color: 'white' }}
         onClick={confirmarCompra}
       >
         Confirmar Compra
       </Button>
+
+      
     </Container>
   );
 }

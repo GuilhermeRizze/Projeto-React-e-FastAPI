@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {
   Container,
   TextField,
@@ -8,6 +9,7 @@ import {
   Typography,
   Paper,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const styles = {
   container: {
@@ -63,6 +65,9 @@ function CadastroDeProduto() {
   return (
     <Container style={styles.container}>
       <Typography variant="h4" gutterBottom>
+      <Link to='/Dashboard' > 
+        <ArrowBackIcon sx={{ ml: 'auto', color: 'black' }} />
+      </Link>
         Cadastro de Produto
       </Typography>
       <Paper style={styles.paper}>
@@ -146,7 +151,7 @@ function CadastroDeProduto() {
             </Grid>
             
             <Grid item xs={12}>
-              <Button type="submit" variant="contained" color="primary">
+              <Button type="submit" variant="contained"  sx={{ backgroundColor: '#0D7048', color: 'white' }}>
                 Cadastrar Produto
               </Button>
             </Grid>

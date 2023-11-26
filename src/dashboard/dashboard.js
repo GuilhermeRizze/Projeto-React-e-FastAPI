@@ -39,6 +39,8 @@ const AppBar = styled(MuiAppBar, {
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
+  backgroundColor: '#0D7048', 
+
 }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -78,12 +80,12 @@ export default function Dashboard() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex'}}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
-              pr: '24px', // keep right padding when drawer closed
+              pr: '24px'
             }}
           >
             <IconButton
@@ -116,6 +118,7 @@ export default function Dashboard() {
               alignItems: 'center',
               justifyContent: 'flex-end',
               px: [1],
+              color: "#0D7048",
             }}
           >
             <IconButton onClick={toggleDrawer}>

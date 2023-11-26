@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import queryString from 'query-string';
+
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {
   Container,
   TextField,
@@ -10,6 +11,7 @@ import {
   Typography,
   Paper,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const styles = {
   container: {
@@ -32,9 +34,8 @@ const styles = {
 };
 
 function EdicaoDeProduto() {
-  const { search } = useLocation();
-  const queryParams = queryString.parse(search);
-  const codigo = 85;
+  const { codigo } = useParams();
+
 
   const [produto, setProduto] = useState({
     nome: '',
@@ -79,7 +80,10 @@ function EdicaoDeProduto() {
   return (
     <Container style={styles.container}>
       <Typography variant="h4" gutterBottom>
-        Cadastro de Produto
+      <Link to='/Dashboard' > 
+        <ArrowBackIcon sx={{ ml: 'auto', color: 'black' }} />
+      </Link>
+        Atualização de Produto
       </Typography>
       <Paper style={styles.paper}>
         <form onSubmit={handleSubmit}>
@@ -152,7 +156,7 @@ function EdicaoDeProduto() {
             </Grid>
             
             <Grid item xs={12}>
-              <Button type="submit" variant="contained" color="primary">
+            <Button type="submit" variant="contained"  sx={{ backgroundColor: '#0D7048', color: 'white' }}>
                 Atualizar Produto
               </Button>
             </Grid>

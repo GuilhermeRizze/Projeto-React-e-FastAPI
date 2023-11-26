@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
+import { Container, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
 import axios from 'axios';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Link } from 'react-router-dom';
 
 const styles = {
   container: {
@@ -8,6 +10,11 @@ const styles = {
   },
   paper: {
     padding: 20,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
   },
 };
 
@@ -29,19 +36,24 @@ function HistoricoCompras() {
   }, []);
 
   return (
-    <Container style={styles.container}>
+    <Container >
+      
+      
+
       <Typography variant="h4" gutterBottom>
+      <Link to='/' > 
+        <ArrowBackIcon sx={{ ml: 'auto', color: 'black' }} />
+      </Link>
         Histórico de Compras
       </Typography>
       <Paper style={styles.paper}>
         <List>
           {historicoDeCompras.map((compra) => (
-            <ListItem>
+            <ListItem key={compra.id}>
               <ListItemText
                 primary={`Cliente: ${compra.id_cli}`}
                 secondary={`Total: R$ ${compra.total.toFixed(2)}`}
               />
-              
             </ListItem>
           ))}
         </List>

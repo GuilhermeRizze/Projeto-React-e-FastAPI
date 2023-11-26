@@ -13,44 +13,40 @@ import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-
 const defaultTheme = createTheme();
 
 export default function Album() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-      <AppBar position="relative">
+      <AppBar position="relative" sx={{ bgcolor: '#0D7048' }}>
         <Toolbar>
-          <ShopIcon sx={{ mr: 2 }} />
-          <Typography variant="h6" color="white" noWrap>
-            Produtos
+        <Typography variant="h6" color="white" noWrap>
+            vITEpila
           </Typography>
-          <Link to='/Carrinho' > <ShopAddIcon sx={{ mr: 2 }} position="end"/></Link>
         </Toolbar>
-        
       </AppBar>
       <main>
         {/* Hero unit */}
         <Box
           sx={{
-            bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6,
+            backgroundImage: 'url("https://i.imgur.com/foSX7uC.png")',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            pt: 20,
+            pb: 30,
           }}
         >
           <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="text.primary"
-              gutterBottom
-            >COLOCAR A LOGO
-              vITEpila
-            </Typography>
-            <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Sua compra foi efeitivada
+            
+            <Typography variant="h3" align="center" sx={{
+                color: 'white',
+                textShadow: '2px 2px 2px black',
+                padding: '10px',
+                borderRadius: '5px',
+              }} >
+              Sua compra foi efetivada
             </Typography>
             <Stack
               sx={{ pt: 4 }}
@@ -58,26 +54,23 @@ export default function Album() {
               spacing={2}
               justifyContent="center"
             >
-              
-              <Link to='/' > <Button variant="contained"> VOLTAR PARA HOME</Button> </Link>
-            
+              <Link to='/'>
+                <Button variant="contained" sx={{ backgroundColor: '#0D7048' }}>VOLTAR PARA HOME</Button>
+              </Link>
             </Stack>
           </Container>
         </Box>
-        
       </main>
       {/* Footer */}
-      <Box sx={{ bgcolor: 'green', p: 6 }} component="footer">
-        
+      <Box sx={{ bgcolor: '#0D7048', p: 6 }} component="footer">
         <Typography
           variant="subtitle1"
           align="center"
           component="p"
-          color = "white"
+          color="white"
         >
           Obrigado por escolher nossos serviços!
         </Typography>
-        
       </Box>
       {/* End footer */}
     </ThemeProvider>

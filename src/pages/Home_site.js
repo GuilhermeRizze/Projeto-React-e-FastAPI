@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import ShopIcon from '@mui/icons-material/ShoppingCart';
 import ShopAddIcon from '@mui/icons-material/AddShoppingCart';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,9 +16,6 @@ import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-
-
-//const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
 const defaultTheme = createTheme();
 
@@ -44,38 +40,22 @@ export default function Album() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
+      <AppBar position="static" sx={{ backgroundColor: '#0D7048' }}>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <ShopIcon sx={{ mr: 2 }} />
           <Typography variant="h6" color="white" noWrap>
-            Produtos
+            vITEpila
           </Typography>
-          <Link to='/Carrinho' > <ShopAddIcon sx={{ mr: 2 }} position="end"/></Link>
-        </Toolbar>
-        
-      </AppBar>
+        </Box>
+        <Link to='/Carrinho'>
+          <ShopAddIcon sx={{ ml: 'auto', color: 'white' }} />
+        </Link>
+      </Toolbar>
+    </AppBar>
       <main>
-        {/* Hero unit */}
-        <Box
-          sx={{
-            bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6,
-          }}
-        >
-          <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="text.primary"
-              gutterBottom
-            >
-              Produto
-            </Typography>
-            <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Bem vindo a loja
-            </Typography>
+        
+            <img src="https://i.imgur.com/DtHWPGml.png" alt="Logo" style={{ width: '1344px', height: '500px' }} />           
             <Stack
               sx={{ pt: 4 }}
               direction="row"
@@ -83,12 +63,21 @@ export default function Album() {
               justifyContent="center"
             >
               
-              <Link to='/Cliente' > <Button variant="contained"> CLIENTE</Button> </Link>
-             <Link to='/Login' > <Button variant="contained"> ADMINISTRACAO</Button> </Link>
+              <Link to='/Cliente'>
+                <Button variant="contained" sx={{ backgroundColor: '#0D7048', color: 'white' }}>
+                  CLIENTE
+                </Button>
+              </Link>
+
+              <Link to='/Login'>
+                <Button variant="contained" sx={{ backgroundColor: '#0D7048', color: 'white' }}>
+                  ADMINISTRACAO
+                </Button>
+              </Link>
             
             </Stack>
-          </Container>
-        </Box>
+   
+       
         <Container sx={{ py: 3 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={2}>
@@ -112,7 +101,7 @@ export default function Album() {
                     <Typography>
                       {cursos.descricao}
                     </Typography>
-                    <Typography color="red">
+                    <Typography color="#0D7048">
                       R$ {cursos.preco}
                     </Typography>
                   </CardContent>
@@ -124,7 +113,7 @@ export default function Album() {
         </Container>
       </main>
       {/* Footer */}
-      <Box sx={{ bgcolor: 'green', p: 6 }} component="footer">
+      <Box sx={{ bgcolor: '#0D7048', p: 6 }} component="footer">
         
         <Typography
           variant="subtitle1"
