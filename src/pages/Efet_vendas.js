@@ -1,10 +1,7 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
-import ShopIcon from '@mui/icons-material/ShoppingCart';
-import ShopAddIcon from '@mui/icons-material/AddShoppingCart';
 import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -27,7 +24,6 @@ export default function Album() {
         </Toolbar>
       </AppBar>
       <main>
-        {/* Hero unit */}
         <Box
           sx={{
             backgroundImage: 'url("https://i.imgur.com/foSX7uC.png")',
@@ -61,7 +57,6 @@ export default function Album() {
           </Container>
         </Box>
       </main>
-      {/* Footer */}
       <Box sx={{ bgcolor: '#0D7048', p: 6 }} component="footer">
         <Typography
           variant="subtitle1"
@@ -72,7 +67,6 @@ export default function Album() {
           Obrigado por escolher nossos serviços!
         </Typography>
       </Box>
-      {/* End footer */}
     </ThemeProvider>
   );
 }

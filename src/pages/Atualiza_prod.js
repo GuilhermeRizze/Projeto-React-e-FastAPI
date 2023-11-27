@@ -61,7 +61,7 @@ function EdicaoDeProduto() {
     e.preventDefault();
     
     try {
-      // Enviar dados para a API FastAPI
+      // Enviar dados para a API FastAPI Desenvolvida
       const response = await axios.put(`http://localhost:8000/curso/update/${produto.codigo}`, produto); //
       console.log('Resposta da API:', response.data);
       setProduto({

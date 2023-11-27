@@ -23,7 +23,6 @@ export default function Album() {
     const [cursos, setCursos] = React.useState([]);
   
     React.useEffect(() => {
-      // Fazer uma solicitação GET ao endpoint FastAPI para obter a lista de produtos
       const obterCursos = async () => {
         try {
           const response = await axios.get('http://localhost:8000/curso/list');
@@ -112,7 +111,6 @@ export default function Album() {
           </Grid>
         </Container>
       </main>
-      {/* Footer */}
       <Box sx={{ bgcolor: '#0D7048', p: 6 }} component="footer">
         
         <Typography
@@ -125,7 +123,6 @@ export default function Album() {
         </Typography>
         
       </Box>
-      {/* End footer */}
     </ThemeProvider>
   );
 }

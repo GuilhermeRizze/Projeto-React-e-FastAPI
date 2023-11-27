@@ -6,7 +6,6 @@ import Home from '../pages/Home_site';
 import Dashboard from '../dashboard/dashboard';
 import CadastroDeProduto from "../pages/Cadastro_prod";
 import HistoricoCompras from "../pages/Hist_cli";
-import Logout from "../pages/Logout";
 import Venda from "../pages/Efet_vendas";
 import Editar from "../pages/Atualiza_prod";
 import Conf from "../pages/Efet_vendas";
@@ -14,12 +13,6 @@ import Conf from "../pages/Efet_vendas";
 
 
 const RotaPrivada = ({elemento}) => {
-  //console.log('Chegou o middleware')
-  //return elemento
-  // var token = localStorage.getItem('token')
-  // console.log(token)
-  // if (token == undefined || token =='')
-  //   return <Navigate to='/Login'/>
     
   return elemento
 }
@@ -31,10 +24,6 @@ const router = createBrowserRouter([
     {
       path: "/Cliente",
       element: <Login_cli/>,
-    },
-    {
-      path: "/Logout",
-      element: <Logout/>,
     },
     {
       path: "/Historico",

@@ -13,7 +13,6 @@ export default function Orders() {
   React.useEffect(() => {
     const obterVendas = async () => {
       try {
-        // Substitua a URL abaixo pela URL real do seu endpoint FastAPI para obter dados de vendas
         const response = await axios.get('http://localhost:8000/curso/compra');
         setVendas(response.data);
       } catch (error) {

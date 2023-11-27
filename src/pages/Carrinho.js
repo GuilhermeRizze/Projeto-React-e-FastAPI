@@ -69,7 +69,6 @@ function CarrinhoDeCompras() {
         },
       });
       // Redirecionar para a tela de confirmação ou realizar outras ações necessárias.
-      // Exemplo de redirecionamento usando React Router:
       navigate('/Conf');
     } catch (error) {
       console.error('Erro ao confirmar a compra:', error);

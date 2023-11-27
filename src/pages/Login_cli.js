@@ -52,7 +52,7 @@ export default function SignIn() {
               flexDirection: 'column',
               alignItems: 'center',
               backgroundColor: 'rgba(255, 255, 255, 0.8)',
-              borderRadius: '8px', // Adicione isso para arredondar as bordas
+              borderRadius: '8px', 
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: '#0D7048' }}>
@@ -71,7 +71,7 @@ export default function SignIn() {
                 name="email"
                 autoComplete="email"
                 autoFocus
-                sx={{ mb: 2 }} // Adiciona margem inferior ao campo
+                sx={{ mb: 2 }} 
               />
               <TextField
                 margin="normal"
@@ -82,7 +82,7 @@ export default function SignIn() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                sx={{ mb: 2 }} // Adiciona margem inferior ao campo
+                sx={{ mb: 2 }} 
               />
               
               <Link to='/Historico' >
